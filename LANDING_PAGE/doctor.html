@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Appointment System</title>
+    <!-- <link rel="stylesheet" href="doctor.css"> -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        main {
+            padding: 2rem;
+        }
+
+        .appointment-form {
+            max-width: 400px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            padding: 1rem;
+        }
+
+        .appointment-form h2 {
+            margin-top: 0;
+        }
+
+        .appointment-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .appointment-form select,
+        .appointment-form input[type="date"],
+        .appointment-form input[type="time"] {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .appointment-form button {
+            background-color: #333;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .appointment-form button:hover {
+            background-color: #555;
+        }
+
+        footer{
+            background-color:rgb(41, 41, 41);
+            color:white;
+        }
+        .footer-1{
+            display: flex;
+            margin-left: 4%;
+            justify-content: space-evenly;
+        }
+        .last1{
+            margin-top: 1.8%;
+            width:34%;
+            /* text-align: center; */
+        }
+        #head1{
+            font-size:1.7rem;
+            text-decoration:underline;
+        }
+        .con-que{
+            margin-bottom:8%;
+        }
+        .con-que a{
+            color:white;
+            text-decoration: none;
+        }
+        .last1 a{
+            color:white;
+            margin-right:5%;
+            font-size: 1.05rem;
+        }
+        .last1 a:hover{
+            color:rgb(209, 209, 209);
+            font-size:1rem;
+            text-decoration: none;
+        }
+        .footer-2{
+            margin-top:1.6%;
+            padding-bottom: 3%;
+            text-align: center;
+            margin-left:6%;
+            margin-right: 6%;
+            font-size: 0.9rem;
+        }
+
+        .footer-3{
+            margin-top:1.6%;
+            padding-bottom: 2%;
+            text-align: center;
+            margin-left:6%;
+            margin-right: 6%;
+            font-size: 0.9rem;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Doctor Appointment System</h1>
+    </header>
+    <main>
+        <section class="appointment-form">
+            <h2>Book an Appointment</h2>
+            <form action="submit_appointment.php.php" method="post">
+                <label for="doctor">Doctor:</label>
+                <select name="doctor" id="doctor">
+                    <option value="dr_smith">Dr. Smith</option>
+                    <option value="dr_jones">Dr. Jones</option>
+                    <option value="dr_puja">Dr.Puja</option>
+                    <option value="dr_shyna">Dr.Shyna</option>
+                    <option value="dr_subhadip">Dr.Subhadip</option>
+                    <option value="dr_samir">Dr.Samir</option>
+                    <!-- Add more options as needed -->
+                </select>
+                <label for="date">Date:</label>
+                <input type="date" name="date" id="date">
+                <label for="time">Time:</label>
+                <input type="time" name="time" id="time">
+                <button type="submit">Book Appointment</button>
+                
+            </form>
+        </section>
+        <a href="index.html" style="margin-left: 5%; font-size: 1.2rem;">previous</s>
+    </main>
+    <div class="footer">
+        <footer>
+            <div class="footer-1">
+                <div class="last1">
+                    <p id="head1">General & Medical Healthcare</p>
+                    <div class="con-que">
+                        <p>Sales Quaries</p>
+                        <a href="#">Phone: 9586721422</a><br>
+                        <a href="#">Email: comsales@glaim.com</a>
+                    </div>
+                    <div class="con-que">
+                        <p>General Quaries</p>
+                        <a href="#">Phone: 9586721422</a><br>
+                        <a href="#">Email: general@glaim.com</a>
+                    </div>
+                </div>
+
+                <div class="last1">
+                    <p id="head1">Company Links</p>
+                    <a href="#">News & Events</a>
+                    <a href="#">Hospital Near Me</a>
+                    <a href="#">Healthcare Professionals</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms & Conditions</a>
+                    <a href="#">Cookie Policy</a>
+                    <a href="#">Help</a>
+                    <a href="#">Sitemap</a>
+                </div>
+            </div>
+            <div class="footer-2">
+                <p>Our Partners</p>
+            </div>
+            <div class="footer-3">
+                <p>© 2025 Healthy Haven</p>
+                <p id="foot-p">General & Medical Healthcare are a division of General & Medical Finance Ltd - Registered in England No 2421641. Registered Office: General & Medical House, Napier Place, Peterborough, PE2 6XN. General & Medical Finance Ltd are authorised and regulated by the Financial Conduct Authority (FCA). Our firm reference number is 579509 and this may be checked at www.fca.org.ind</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

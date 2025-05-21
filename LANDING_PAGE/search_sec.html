@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Website Navigation Search</title>
+<style>
+  #searchContainer {
+    display: flex;
+    align-items: center;
+    margin-top:15%;
+  }
+  #searchBar {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    width: 300px;
+    font-size: 16px;
+    border-right: none;
+  }
+  #searchButton {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 0 5px 5px 0;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    font-size: 16px;
+    border-left: none;
+  }
+  #searchButton:hover {
+    background-color: #e0e0e0;
+  }
+  #searchResults {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #eee;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    width: 300px;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: none; /* Initially hidden */
+    z-index: 10; /* Ensure it's above other elements */
+  }
+  #searchResults li {
+    padding: 8px 15px;
+    cursor: pointer;
+  }
+  #searchResults li:hover {
+    background-color: #f0f0f0;
+  }
+</style>
+</head>
+<body>
+
+<div id="searchContainer">
+  <input type="text" id="searchBar" placeholder="Search website pages..." onkeyup="showResults(this.value)">
+  <button id="searchButton" onclick="handleSearch()">Search</button>
+</div>
+<ul id="searchResults"></ul>
+
+<script>
+  // Replace this with your website's actual page data
+  const websitePages = [
+  { title: "Homepage", url: "/LANDING_PAGE/loading.html" },
+  { title: "About Us", url: "/LANDING_PAGE/About_us.html" },
+  { title: "Help", url: "/LANDING_PAGE/help.html" },
+  { title: "Services", url: "/LANDING_PAGE/services.html" },
+  { title: "Contact Us", url: "/LANDING_PAGE/contact.html" },
+  { title: "Book An Appointment", url: "/LANDING_PAGE/book.html" },
+  { title: "Talk To Us", url: "/LANDING_PAGE/chatIdx.html" },
+    // Add more pages as needed
+  ];
+
+  let currentSearchResults = []; // Store the current matching results
+
+  function showResults(query) {
+    const resultsContainer = document.getElementById("searchResults");
+    resultsContainer.innerHTML = ""; // Clear previous results
+    currentSearchResults = []; // Clear previous stored results
+
+    if (query.length === 0) {
+      resultsContainer.style.display = "none";
+      return;
+    }
+
+    const matchingPages = websitePages.filter(page =>
+      page.title.toLowerCase().includes(query.toLowerCase())
+    );
+
+    currentSearchResults = matchingPages; // Store the current matches
+
+    if (matchingPages.length > 0) {
+      matchingPages.forEach((page, index) => {
+        const listItem = document.createElement("li");
+        listItem.textContent = page.title;
+        listItem.onclick = function() {
+          window.location.href = page.url;
+        };
+        listItem.onkeydown = function(event) {
+          if (event.key === 'Enter') {
+            window.location.href = page.url;
+          }
+        };
+        listItem.tabIndex = index === 0 ? 0 : -1; // Make the first result focusable by default
+        resultsContainer.appendChild(listItem);
+      });
+      resultsContainer.style.display = "block";
+    } else {
+      resultsContainer.style.display = "none"; // Hide if no matches
+    }
+  }
+
+  function handleSearch() {
+    const query = document.getElementById("searchBar").value.trim();
+    if (query) {
+      // If there are search results displayed, navigate to the first one
+      if (currentSearchResults.length > 0) {
+        window.location.href = currentSearchResults[0].url;
+      } else {
+        // Optionally handle cases where there are no results but the button is clicked
+        alert(`No matching pages found for "${query}"`);
+      }
+    }
+  }
+
+  document.getElementById("searchBar").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  });
+
+  // Close the search results when clicking outside
+  document.addEventListener('click', function(event) {
+    const searchBar = document.getElementById('searchBar');
+    const searchButton = document.getElementById('searchButton');
+    const searchResults = document.getElementById('searchResults');
+    if (event.target !== searchBar && event.target !== searchButton && event.target !== searchResults && !searchResults.contains(event.target)) {
+      searchResults.style.display = 'none';
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Speech to Navigation</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #speechResult {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        #status {
+            font-style: italic;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <h1>Speech to Navigation</h1>
+    <div id="speechResult"></div>
+    <div id="status">Click "Start Talking" to begin.</div>
+    <button id="startButton">Start Talking</button>
+
+    <script>
+        const speechResultElement = document.getElementById('speechResult');
+        const startButton = document.getElementById('startButton');
+        const statusElement = document.getElementById('status');
+
+        // Check if SpeechRecognition is supported by the browser
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+            const recognition = new SpeechRecognition();
+
+            // Configure recognition settings
+            recognition.continuous = false; // Stop recognition after the first phrase
+            recognition.interimResults = false; // Don't show interim results
+            recognition.lang = 'en-US'; // Set the language (you can change this)
+
+            recognition.onstart = () => {
+                statusElement.textContent = 'Listening...';
+                speechResultElement.textContent = '';
+            };
+
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript.toLowerCase().trim();
+                speechResultElement.textContent = `You said: "${transcript}"`;
+                statusElement.textContent = 'Processing...';
+                navigateToPage(transcript);
+            };
+
+            recognition.onerror = (event) => {
+                statusElement.textContent = `Error: ${event.error}`;
+            };
+
+            recognition.onend = () => {
+                statusElement.textContent = 'Ready for the next command.';
+            };
+
+            startButton.addEventListener('click', () => {
+                recognition.start();
+            });
+
+            function navigateToPage(spokenText) {
+                if (spokenText.includes('home')) {
+                    window.location.href = '/LANDING_PAGE/index.html'; // Replace with your home page URL
+                } else if (spokenText.includes('about us')) {
+                    window.location.href = '/LANDING_PAGE/about.html'; // Replace with your about us page URL
+                } else if (spokenText.includes('help section')) {
+                    window.location.href = '/LANDING_PAGE/help.html'; // Replace with your products page URL
+                } else if (spokenText.includes('contact')) {
+                    window.location.href = '/LANDING_PAGE/contact.html'; // Replace with your contact page URL
+                } else if (spokenText.includes('service')) {
+                    window.location.href = '/LANDING_PAGE/service.html'; // Replace with your contact page URL
+                } else if (spokenText.includes('chat with us')) {
+                    window.location.href = '/LANDING_PAGE/chatIdx.html'; // Replace with your contact page URL
+                } else if (spokenText.includes('book an appointment')) {
+                    window.location.href = '/LANDING_PAGE/book.html'; // Replace with your contact page URL
+                }
+                 else if (spokenText.includes('rampurhat')) {
+                    window.location.href = 'https://www.google.com/search?q=Rampurhat+West+Bengal'; // Example with a specific location
+                } else {
+                    speechResultElement.textContent = `No matching page found for: "${spokenText}"`;
+                    statusElement.textContent = 'Ready for the next command.';
+                }
+            }
+        } else {
+            statusElement.textContent = 'Speech recognition is not supported in your browser.';
+            startButton.disabled = true;
+        }
+    </script>
+</body>
+</html>
