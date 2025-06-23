@@ -86,7 +86,7 @@ healthy-haven/
 
 🙏 Acknowledgements
 
-Google Maps API / OpenStreetMap – For hospital location data.
-Spring Boot – Java backend framework.
-Python libraries – For disease analysis or data processing.
-All open-source tools that made this project possible.
+1. Google Maps API / OpenStreetMap – For hospital location data.
+2. Spring Boot – Java backend framework.
+3. Python libraries – For disease analysis or data processing.
+4. All open-source tools that made this project possible.
