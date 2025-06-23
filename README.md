@@ -79,11 +79,13 @@ healthy-haven/
 ---
 
 📸 Screenshots 
+
 ![image alt](https://github.com/sourasish123/project_1/blob/b0a64ce39f4ad328e7545dad938486891b1ee566/Screenshot%202025-06-24%20003924.png)
 
 ---
 
 🙏 Acknowledgements
+
 Google Maps API / OpenStreetMap – For hospital location data.
 Spring Boot – Java backend framework.
 Python libraries – For disease analysis or data processing.
